@@ -1,4 +1,5 @@
 import socket as s
+import threading
 from tkinter import *
 from window_utils import WindowUtils
 
@@ -22,7 +23,7 @@ class Chat(WindowUtils):
         image = PhotoImage(file="./img/microphone.png").subsample(25)
         lbl = Label(image=image)
         lbl.image = image
-        voc_button = Button(interaction, bg="#2d8dfd", fg="white", borderwidth=0, image=image, command=lambda: self.stream_audio())
+        voc_button = Button(interaction, bg="#2d8dfd", fg="white", borderwidth=0, image=image, command=lambda: threading.Thread(name="record", target=self.stream_audio()))
         voc_button.grid(row=0, column=0, ipadx=2, padx=5)
         self.elements.append(voc_button)
 
